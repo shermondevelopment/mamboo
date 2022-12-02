@@ -13,10 +13,14 @@ import routerApp from './routers'
 /** connection how db */
 import connectionDb from './settings/db'
 
+/** middleware */
+import errorMiddleware from './middlewares/error-middleware'
+
 /** server */
 const app = express()
 app.use(json())
 app.use(routerApp)
+app.use(errorMiddleware)
 
 connectionDb
   .then(() => {
