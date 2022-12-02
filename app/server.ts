@@ -13,7 +13,7 @@ const app = express()
 connectionDb
   .then(() => {
     app.listen(process.env.PORT_APP, () =>
-      console.log('app running in port 3001')
+      console.log('app running in port 3001 🚀🚀🚀')
     )
   })
   .catch(() => console.log('connection with database failed ❌❌❌'))
