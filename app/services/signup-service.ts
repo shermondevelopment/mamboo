@@ -7,13 +7,14 @@ import AppError from '../utils/app-error'
 /** bcypt */
 import bcrypt from 'bcrypt'
 
-type Signup = {
+export type Auth = {
   email: string
   password: string
 }
 
-const SignupService = async (user: Signup) => {
+const SignupService = async (user: Auth) => {
   const userExist = await findUser(user.email)
+
   if (userExist) {
     return AppError(401, 'email already exists')
   }
