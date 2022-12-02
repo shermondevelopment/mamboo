@@ -1,3 +1,6 @@
+/* handling asynchronous errors */
+import 'express-async-errors'
+
 /** dotenv */
 import 'dotenv/config'
 
