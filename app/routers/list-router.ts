@@ -3,7 +3,8 @@ import { Router } from 'express'
 /** controllers */
 import {
   CreateListController,
-  GetAllListByPaintingController
+  GetAllListByPaintingController,
+  UpdateListController
 } from '../controllers/list-controller'
 
 /** middleware */
@@ -27,5 +28,7 @@ listRouter.get(
   tokenMiddleware,
   GetAllListByPaintingController
 )
+
+listRouter.put('/list/:id', tokenMiddleware, UpdateListController)
 
 export default listRouter

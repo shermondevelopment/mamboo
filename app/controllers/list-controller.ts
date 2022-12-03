@@ -3,7 +3,8 @@ import { Request, Response } from 'express'
 /** services */
 import {
   CreateListService,
-  GetAllListByPaintingService
+  GetAllListByPaintingService,
+  UpdateListService
 } from '../services/list-service'
 
 /** create a new list */
@@ -28,4 +29,13 @@ export const GetAllListByPaintingController = async (
   const painting = await GetAllListByPaintingService(painting_id, user_id)
 
   res.status(200).json(painting)
+}
+
+export const UpdateListController = async (req: Request, res: Response) => {
+  const { id: list_id } = req.params
+  const { title } = req.body
+
+  await UpdateListService(list_id, title)
+
+  res.sendStatus(201)
 }
