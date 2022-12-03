@@ -1,7 +1,10 @@
 import { Router } from 'express'
 
 /** controllers */
-import CreatePaintingController from '../controllers/painting-controller'
+import {
+  CreatePaintingController,
+  ListAllPaintingController
+} from '../controllers/painting-controller'
 
 /** middlewares */
 import tokenMiddleware from '../middlewares/token-middleware'
@@ -20,5 +23,7 @@ paintingRouter.post(
   validationMiddleware(paintingValidation),
   CreatePaintingController
 )
+
+paintingRouter.get('/paintings', tokenMiddleware, ListAllPaintingController)
 
 export default paintingRouter

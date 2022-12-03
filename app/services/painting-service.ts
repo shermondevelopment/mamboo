@@ -1,13 +1,19 @@
 /** repository */
-import { createPaintingRepository } from '../repository/painting'
+import {
+  createPaintingRepository,
+  ListAllPaintingRepository
+} from '../repository/painting'
 
 type PaintingModel = {
   title: string
   user_id: string
 }
 
-const CreatePaintingService = async (painting: PaintingModel) => {
+export const CreatePaintingService = async (painting: PaintingModel) => {
   await createPaintingRepository(painting.title, painting.user_id)
 }
 
-export default CreatePaintingService
+export const ListAllPaintingService = async (user_id: string) => {
+  const painting = ListAllPaintingRepository(user_id)
+  return painting
+}

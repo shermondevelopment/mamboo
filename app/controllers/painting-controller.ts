@@ -1,9 +1,12 @@
 import { Request, Response } from 'express'
 
 /** services */
-import CreatePaintingService from '../services/painting-service'
+import {
+  ListAllPaintingService,
+  CreatePaintingService
+} from '../services/painting-service'
 
-const CreatePaintingController = async (req: Request, res: Response) => {
+export const CreatePaintingController = async (req: Request, res: Response) => {
   const { id: user_id } = res.locals.user
   const { title } = req.body
 
@@ -12,4 +15,13 @@ const CreatePaintingController = async (req: Request, res: Response) => {
   res.sendStatus(201)
 }
 
-export default CreatePaintingController
+export const ListAllPaintingController = async (
+  req: Request,
+  res: Response
+) => {
+  const { id: user_id } = res.locals.user
+
+  const painting = await ListAllPaintingService(user_id)
+
+  res.status(200).json(painting)
+}

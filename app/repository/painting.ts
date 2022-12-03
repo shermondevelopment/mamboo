@@ -7,3 +7,7 @@ export const createPaintingRepository = async (
 ) => {
   await paintingSchema.create({ title, user_id })
 }
+
+export const ListAllPaintingRepository = async (user_id: string) => {
+  return await paintingSchema.find({ user_id })
+}
