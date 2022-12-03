@@ -5,7 +5,8 @@ import {
   ListAllPaintingService,
   CreatePaintingService,
   UpdatePaintingService,
-  DeletePaintingService
+  DeletePaintingService,
+  ListSinglePaintingService
 } from '../services/painting-service'
 
 export const CreatePaintingController = async (req: Request, res: Response) => {
@@ -44,4 +45,16 @@ export const DeletePaintingController = async (req: Request, res: Response) => {
   await DeletePaintingService(painting_id, user_id)
 
   res.sendStatus(204)
+}
+
+export const ListSinglePaintingController = async (
+  req: Request,
+  res: Response
+) => {
+  const { id: user_id } = res.locals.user
+  const { id: painting_id } = req.params
+
+  const painting = await ListSinglePaintingService(painting_id, user_id)
+
+  res.status(200).json(painting)
 }

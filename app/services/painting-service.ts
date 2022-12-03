@@ -55,3 +55,20 @@ export const DeletePaintingService = async (
 
   await DeletePaintingRepository(painting_id)
 }
+
+export const ListSinglePaintingService = async (
+  painting_id: string,
+  user_id: string
+) => {
+  const findPainting = await findPaintingRepository(painting_id)
+
+  if (!findPainting) {
+    return AppError(404, 'painting does not exist')
+  }
+
+  if (findPainting.user_id !== user_id) {
+    return AppError(403, 'user cannot delete a frame that is not his')
+  }
+
+  return findPainting
+}

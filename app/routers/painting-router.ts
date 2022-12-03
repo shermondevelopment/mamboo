@@ -5,7 +5,8 @@ import {
   CreatePaintingController,
   ListAllPaintingController,
   UpdatePaintingController,
-  DeletePaintingController
+  DeletePaintingController,
+  ListSinglePaintingController
 } from '../controllers/painting-controller'
 
 /** middlewares */
@@ -27,6 +28,12 @@ paintingRouter.post(
 )
 
 paintingRouter.get('/paintings', tokenMiddleware, ListAllPaintingController)
+
+paintingRouter.get(
+  '/painting/:id',
+  tokenMiddleware,
+  ListSinglePaintingController
+)
 
 paintingRouter.put(
   '/painting/:id',
