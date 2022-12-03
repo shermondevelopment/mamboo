@@ -5,7 +5,8 @@ import {
   NewTaskController,
   ListTaskController,
   DeleteTaskController,
-  UpdateTaskController
+  UpdateTaskController,
+  AddMemberTaskController
 } from '../controllers/task-controller'
 
 /** middlewares */
@@ -29,5 +30,7 @@ taskRouter.get('/tasks', tokenMiddleware, ListTaskController)
 taskRouter.delete('/task/:id', tokenMiddleware, DeleteTaskController)
 
 taskRouter.put('/task/:id', tokenMiddleware, UpdateTaskController)
+
+taskRouter.put('/task/member/:id', tokenMiddleware, AddMemberTaskController)
 
 export default taskRouter

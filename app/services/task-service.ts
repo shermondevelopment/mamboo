@@ -4,11 +4,16 @@ import {
   findAllTaskRepository,
   findTaskRepository,
   deleteTaskRepository,
-  updateTaskRepository
+  updateTaskRepository,
+  AddMemberTaskRepository
 } from '../repository/task'
 
 /** utils */
 import AppError from '../utils/app-error'
+
+export type TaskMembers = {
+  email: string
+}
 
 export type TaskBody = {
   content: string
@@ -49,4 +54,17 @@ export const UpdateTaskService = async (
   }
 
   await updateTaskRepository(paramsData, task_id)
+}
+
+export const AddMembersService = async (
+  members: Array<TaskMembers>,
+  task_id: string
+) => {
+  const findTask = await findTaskRepository(task_id)
+
+  if (!findTask) {
+    return AppError(404, 'task not exists')
+  }
+
+  await AddMemberTaskRepository(members, task_id)
 }

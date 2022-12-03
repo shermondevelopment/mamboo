@@ -5,7 +5,8 @@ import {
   NewTaskService,
   FindTaskService,
   DeleteTaskService,
-  UpdateTaskService
+  UpdateTaskService,
+  AddMembersService
 } from '../services/task-service'
 
 export const NewTaskController = async (req: Request, res: Response) => {
@@ -32,4 +33,11 @@ export const UpdateTaskController = async (req: Request, res: Response) => {
   const { content, position_task } = req.body
   await UpdateTaskService({ content, position_task }, task_id)
   res.sendStatus(200)
+}
+
+export const AddMemberTaskController = async (req: Request, res: Response) => {
+  const { id: task_id } = req.params
+  const { members } = req.body
+  await AddMembersService(members, task_id)
+  res.sendStatus(204)
 }

@@ -1,5 +1,5 @@
 import taskSchema from '../schemas/task'
-import { TaskBody } from '../services/task-service'
+import { TaskBody, TaskMembers } from '../services/task-service'
 
 export const createTaskRepository = async (
   content: string,
@@ -26,4 +26,11 @@ export const updateTaskRepository = async (
   task_id: string
 ) => {
   await taskSchema.updateOne({ _id: task_id }, { ...taskData })
+}
+
+export const AddMemberTaskRepository = async (
+  members: Array<TaskMembers>,
+  task_id: string
+) => {
+  await taskSchema.updateOne({ _id: task_id }, { members })
 }
