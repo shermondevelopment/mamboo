@@ -3,7 +3,8 @@ import { Router } from 'express'
 /** controllers */
 import {
   NewTaskController,
-  ListTaskController
+  ListTaskController,
+  DeleteTaskController
 } from '../controllers/task-controller'
 
 /** middlewares */
@@ -23,5 +24,7 @@ taskRouter.post(
 )
 
 taskRouter.get('/tasks', tokenMiddleware, ListTaskController)
+
+taskRouter.delete('/task/:id', tokenMiddleware, DeleteTaskController)
 
 export default taskRouter

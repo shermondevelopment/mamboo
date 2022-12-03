@@ -1,7 +1,11 @@
 import { Request, Response } from 'express'
 
 /** tasks */
-import { NewTaskService, FindTaskService } from '../services/task-service'
+import {
+  NewTaskService,
+  FindTaskService,
+  DeleteTaskService
+} from '../services/task-service'
 
 export const NewTaskController = async (req: Request, res: Response) => {
   const { id: user_id } = res.locals.user
@@ -14,4 +18,10 @@ export const NewTaskController = async (req: Request, res: Response) => {
 export const ListTaskController = async (req: Request, res: Response) => {
   const tasks = await FindTaskService()
   res.status(200).json(tasks)
+}
+
+export const DeleteTaskController = async (req: Request, res: Response) => {
+  const { id: task_id } = req.params
+  await DeleteTaskService(task_id)
+  res.sendStatus(204)
 }
