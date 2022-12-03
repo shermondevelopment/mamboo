@@ -1,4 +1,5 @@
 import taskSchema from '../schemas/task'
+import { TaskBody } from '../services/task-service'
 
 export const createTaskRepository = async (
   content: string,
@@ -18,4 +19,11 @@ export const findTaskRepository = async (task_id: string) => {
 
 export const deleteTaskRepository = async (task_id: string) => {
   await taskSchema.deleteOne({ _id: task_id })
+}
+
+export const updateTaskRepository = async (
+  taskData: TaskBody,
+  task_id: string
+) => {
+  await taskSchema.updateOne({ _id: task_id }, { ...taskData })
 }

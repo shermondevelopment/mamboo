@@ -4,7 +4,8 @@ import { Request, Response } from 'express'
 import {
   NewTaskService,
   FindTaskService,
-  DeleteTaskService
+  DeleteTaskService,
+  UpdateTaskService
 } from '../services/task-service'
 
 export const NewTaskController = async (req: Request, res: Response) => {
@@ -24,4 +25,11 @@ export const DeleteTaskController = async (req: Request, res: Response) => {
   const { id: task_id } = req.params
   await DeleteTaskService(task_id)
   res.sendStatus(204)
+}
+
+export const UpdateTaskController = async (req: Request, res: Response) => {
+  const { id: task_id } = req.params
+  const { content, position_task } = req.body
+  await UpdateTaskService({ content, position_task }, task_id)
+  res.sendStatus(200)
 }
