@@ -3,7 +3,8 @@ import {
   createNewList,
   findListByPaintingRepository,
   findSingleListRepository,
-  updateListRepository
+  updateListRepository,
+  DeleteListRepository
 } from '../repository/list'
 import { findPaintingRepository } from '../repository/painting'
 
@@ -45,4 +46,14 @@ export const UpdateListService = async (list_id: string, title: string) => {
   }
 
   await updateListRepository(list_id, title)
+}
+
+export const DeleteListService = async (list_id: string) => {
+  const listExist = await findSingleListRepository(list_id)
+
+  if (!listExist) {
+    return AppError(404, 'list not exists')
+  }
+
+  await DeleteListRepository(list_id)
 }

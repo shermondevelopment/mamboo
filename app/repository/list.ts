@@ -23,3 +23,7 @@ export const findSingleListRepository = async (list_id: string) => {
 export const updateListRepository = async (list_id: string, title: string) => {
   await listSchema.updateOne({ _id: list_id }, { title })
 }
+
+export const DeleteListRepository = async (list_id: string) => {
+  await listSchema.deleteOne({ _id: list_id })
+}

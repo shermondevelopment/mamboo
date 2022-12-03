@@ -4,7 +4,8 @@ import { Router } from 'express'
 import {
   CreateListController,
   GetAllListByPaintingController,
-  UpdateListController
+  UpdateListController,
+  DeleteListController
 } from '../controllers/list-controller'
 
 /** middleware */
@@ -30,5 +31,7 @@ listRouter.get(
 )
 
 listRouter.put('/list/:id', tokenMiddleware, UpdateListController)
+
+listRouter.delete('/list/:id', tokenMiddleware, DeleteListController)
 
 export default listRouter
