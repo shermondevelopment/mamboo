@@ -22,3 +22,7 @@ export const updatePaintingRepository = async (
 ) => {
   await paintingSchema.updateOne({ _id: painting_id }, { title })
 }
+
+export const DeletePaintingRepository = async (painting_id: string) => {
+  await paintingSchema.deleteOne({ _id: painting_id })
+}

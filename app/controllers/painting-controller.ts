@@ -4,7 +4,8 @@ import { Request, Response } from 'express'
 import {
   ListAllPaintingService,
   CreatePaintingService,
-  UpdatePaintingService
+  UpdatePaintingService,
+  DeletePaintingService
 } from '../services/painting-service'
 
 export const CreatePaintingController = async (req: Request, res: Response) => {
@@ -35,4 +36,12 @@ export const UpdatePaintingController = async (req: Request, res: Response) => {
   await UpdatePaintingService({ user_id, painting_id, title })
 
   res.sendStatus(200)
+}
+
+export const DeletePaintingController = async (req: Request, res: Response) => {
+  const { id: user_id } = res.locals.user
+  const { id: painting_id } = req.params
+  await DeletePaintingService(painting_id, user_id)
+
+  res.sendStatus(204)
 }

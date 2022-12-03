@@ -3,7 +3,8 @@ import {
   createPaintingRepository,
   ListAllPaintingRepository,
   findPaintingRepository,
-  updatePaintingRepository
+  updatePaintingRepository,
+  DeletePaintingRepository
 } from '../repository/painting'
 import AppError from '../utils/app-error'
 
@@ -36,4 +37,21 @@ export const UpdatePaintingService = async (
     paintingEditParams.painting_id,
     paintingEditParams.title
   )
+}
+
+export const DeletePaintingService = async (
+  painting_id: string,
+  user_id: string
+) => {
+  const findPainting = await findPaintingRepository(painting_id)
+
+  if (!findPainting) {
+    return AppError(404, 'painting does not exist')
+  }
+
+  if (findPainting.user_id !== user_id) {
+    return AppError(403, 'user cannot delete a frame that is not his')
+  }
+
+  await DeletePaintingRepository(painting_id)
 }

@@ -4,7 +4,8 @@ import { Router } from 'express'
 import {
   CreatePaintingController,
   ListAllPaintingController,
-  UpdatePaintingController
+  UpdatePaintingController,
+  DeletePaintingController
 } from '../controllers/painting-controller'
 
 /** middlewares */
@@ -32,6 +33,12 @@ paintingRouter.put(
   tokenMiddleware,
   validationMiddleware(paintingValidation),
   UpdatePaintingController
+)
+
+paintingRouter.delete(
+  '/painting/:id',
+  tokenMiddleware,
+  DeletePaintingController
 )
 
 export default paintingRouter
