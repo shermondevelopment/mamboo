@@ -1,5 +1,5 @@
 /** task repository */
-import { createTaskRepository } from '../repository/task'
+import { createTaskRepository, findTaskRepository } from '../repository/task'
 
 export const NewTaskService = async (
   content: string,
@@ -7,4 +7,9 @@ export const NewTaskService = async (
   list_id: string
 ) => {
   await createTaskRepository(content, user_id, list_id)
+}
+
+export const FindTaskService = async () => {
+  const tasks = await findTaskRepository()
+  return tasks
 }

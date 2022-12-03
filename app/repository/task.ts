@@ -7,3 +7,7 @@ export const createTaskRepository = async (
 ) => {
   await taskSchema.create({ content, user_id, list_id })
 }
+
+export const findTaskRepository = async () => {
+  return await taskSchema.find()
+}
