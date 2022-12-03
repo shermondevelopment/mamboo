@@ -11,3 +11,14 @@ export const createPaintingRepository = async (
 export const ListAllPaintingRepository = async (user_id: string) => {
   return await paintingSchema.find({ user_id })
 }
+
+export const findPaintingRepository = async (painting_id: string) => {
+  return await paintingSchema.findOne({ _id: painting_id })
+}
+
+export const updatePaintingRepository = async (
+  painting_id: string,
+  title: string
+) => {
+  await paintingSchema.updateOne({ _id: painting_id }, { title })
+}
