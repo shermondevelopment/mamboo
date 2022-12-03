@@ -67,7 +67,7 @@ export const ListSinglePaintingService = async (
   }
 
   if (findPainting.user_id !== user_id) {
-    return AppError(403, 'user cannot delete a frame that is not his')
+    return AppError(403, 'user cannot access a frame that is not his')
   }
 
   return findPainting

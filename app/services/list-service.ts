@@ -1,5 +1,5 @@
 /** repository */
-import { createNewList } from '../repository/list'
+import { createNewList, findListByPaintingRepository } from '../repository/list'
 import { findPaintingRepository } from '../repository/painting'
 
 /** utils */
@@ -17,4 +17,17 @@ export const CreateListService = async (
   }
 
   await createNewList(title, painting_id, user_id)
+}
+
+export const GetAllListByPaintingService = async (
+  painting_id: string,
+  user_id: string
+) => {
+  const painting = await findListByPaintingRepository(painting_id, user_id)
+
+  if (!painting) {
+    return AppError(404, 'list not exists')
+  }
+
+  return painting
 }

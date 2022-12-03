@@ -1,7 +1,10 @@
 import { Router } from 'express'
 
 /** controllers */
-import { CreateListController } from '../controllers/list-controller'
+import {
+  CreateListController,
+  GetAllListByPaintingController
+} from '../controllers/list-controller'
 
 /** middleware */
 import tokenMiddleware from '../middlewares/token-middleware'
@@ -17,6 +20,12 @@ listRouter.post(
   tokenMiddleware,
   validationMiddleware(listValidation),
   CreateListController
+)
+
+listRouter.get(
+  '/list/by/painting/:id',
+  tokenMiddleware,
+  GetAllListByPaintingController
 )
 
 export default listRouter
