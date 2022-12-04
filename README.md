@@ -43,6 +43,10 @@ Navigate to the cloned project folder and Rename file .env.dev to .env
 docker-compose up -d
 ```
 
+```yml
+app running in port 3001
+```
+
 ## :rocket: Routers of authenticate
 
 ```yml
@@ -207,4 +211,19 @@ UPDATE /task/member/remove/:id (authenticated)
           { "email": "fernanda@yahoo.com" }
         ]
     }
+```
+
+## router of get all list with task
+
+```yml
+GET /list/task/:id  (authenticated)
+    - Route to remove members of task
+    - headers: { "Authorization": "Bearer $token" }
+    - body: {
+        "members": [
+          { "email": "fernanda@yahoo.com" }
+        ]
+    }
+
+    (:id) as painting_id
 ```
