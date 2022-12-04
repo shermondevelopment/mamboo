@@ -1,6 +1,9 @@
 /* handling asynchronous errors */
 import 'express-async-errors'
 
+/** cors */
+import cors from 'cors'
+
 /** dotenv */
 import 'dotenv/config'
 
@@ -18,6 +21,7 @@ import errorMiddleware from './middlewares/error-middleware'
 
 /** server */
 const app = express()
+app.use(cors())
 app.use(json())
 app.use(routerApp)
 app.use(errorMiddleware)
