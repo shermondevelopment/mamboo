@@ -31,8 +31,12 @@ create a system where I can create my board and within these boards I can have s
 https://github.com/shermondevelopment/mamboo.git
 ```
 
+```yml
+Navigate to the cloned project folder and Rename file .env.dev to .env
+```
+
 <p>
- Navigate to the cloned project folder, then go up the application's docker container:
+ then go up the application's docker container:
 </p>
 
 ```yml
@@ -118,13 +122,10 @@ POST /list (authenticated)
 ```
 
 ```yml
-POST /list/by/painting/:id (authenticated)
+GET /list/by/painting/:id (authenticated)
     - Route to list all framer with list
     - headers: { "Authorization": "Bearer $token" }
-    - body: {
-        "title": "To Do",
-        "painting_id": "1c9487ef-17dc-4b60-b2b4-81eb88acaa99"
-    }
+    - body: { }
 ```
 
 ```yml
