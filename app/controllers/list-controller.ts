@@ -5,7 +5,8 @@ import {
   CreateListService,
   GetAllListByPaintingService,
   UpdateListService,
-  DeleteListService
+  DeleteListService,
+  GetAllListHowTaskService
 } from '../services/list-service'
 
 /** create a new list */
@@ -46,4 +47,11 @@ export const DeleteListController = async (req: Request, res: Response) => {
 
   await DeleteListService(list_id)
   res.sendStatus(204)
+}
+
+export const GetAllListHowTask = async (req: Request, res: Response) => {
+  const { id: user_id } = res.locals.user
+  const { id: painting_id } = req.params
+  const list = await GetAllListHowTaskService(user_id, painting_id)
+  res.status(200).json(list)
 }

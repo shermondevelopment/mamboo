@@ -38,3 +38,7 @@ export const AddMemberTaskRepository = async (
 export const RemoveMemberTaskRepository = async (members: TaskMembers) => {
   await taskSchema.update({}, { $pull: { members: { email: members.email } } })
 }
+
+export const findTaskByListId = async (list_id: string) => {
+  return await taskSchema.find({ list_id })
+}

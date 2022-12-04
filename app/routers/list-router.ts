@@ -5,7 +5,8 @@ import {
   CreateListController,
   GetAllListByPaintingController,
   UpdateListController,
-  DeleteListController
+  DeleteListController,
+  GetAllListHowTask
 } from '../controllers/list-controller'
 
 /** middleware */
@@ -33,5 +34,7 @@ listRouter.get(
 listRouter.put('/list/:id', tokenMiddleware, UpdateListController)
 
 listRouter.delete('/list/:id', tokenMiddleware, DeleteListController)
+
+listRouter.get('/list/task/:id', tokenMiddleware, GetAllListHowTask)
 
 export default listRouter
