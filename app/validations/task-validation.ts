@@ -1,6 +1,6 @@
 import * as Joi from 'joi'
 
-const taskValidation = Joi.object({
+export const taskValidation = Joi.object({
   content: Joi.string().required().messages({
     'string.empty': 'please enter a content'
   }),
@@ -17,4 +17,10 @@ const taskValidation = Joi.object({
   )
 })
 
-export default taskValidation
+export const taskAddMembersValidation = Joi.object({
+  members: Joi.array().items(
+    Joi.object({
+      email: Joi.string().email()
+    })
+  )
+})

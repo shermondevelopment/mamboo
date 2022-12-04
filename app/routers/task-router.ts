@@ -6,7 +6,8 @@ import {
   ListTaskController,
   DeleteTaskController,
   UpdateTaskController,
-  AddMemberTaskController
+  AddMemberTaskController,
+  RemoveMemberTaskController
 } from '../controllers/task-controller'
 
 /** middlewares */
@@ -14,7 +15,10 @@ import tokenMiddleware from '../middlewares/token-middleware'
 import validationMiddleware from '../middlewares/validation-middleware'
 
 /** validation */
-import taskValidation from '../validations/task-validation'
+import {
+  taskValidation,
+  taskAddMembersValidation
+} from '../validations/task-validation'
 
 const taskRouter = Router()
 
@@ -31,6 +35,18 @@ taskRouter.delete('/task/:id', tokenMiddleware, DeleteTaskController)
 
 taskRouter.put('/task/:id', tokenMiddleware, UpdateTaskController)
 
-taskRouter.put('/task/member/:id', tokenMiddleware, AddMemberTaskController)
+taskRouter.put(
+  '/task/member/add/:id',
+  tokenMiddleware,
+  validationMiddleware(taskAddMembersValidation),
+  AddMemberTaskController
+)
+
+taskRouter.put(
+  '/task/member/remove/:id',
+  tokenMiddleware,
+  validationMiddleware(taskAddMembersValidation),
+  RemoveMemberTaskController
+)
 
 export default taskRouter
